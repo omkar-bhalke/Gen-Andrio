@@ -67,6 +67,12 @@ jobs:
           key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/libs.versions.toml') }}
           restore-keys: gradle-${{ runner.os }}-
 
+      - name: Create directories AGP expects
+        run: |
+          mkdir -p core/app/build/intermediates/external_file_lib_dex_archives/debug/desugarDebugFileDependencies
+          mkdir -p core/app/build/intermediates/external_file_lib_dex_archives/release/desugarReleaseFileDependencies
+          mkdir -p core/app/build/intermediates/l8_art_profile/release/l8DexDesugarLibRelease
+
       - name: Build
         run: |
           chmod +x ./gradlew
