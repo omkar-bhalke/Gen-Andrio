@@ -36,11 +36,6 @@ jobs:
           distribution: temurin
           java-version: "21"
 
-      - name: Android SDK components
-        run: |
-          yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "platforms;android-34" "build-tools;35.0.0" "ndk;26.1.10909125" "cmake;3.22.1" > /dev/null
-
       - name: Signing key
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
@@ -89,3 +84,4 @@ jobs:
           name: apk-${{ env.BUILD_TYPE }}
           path: core/app/build/outputs/apk/**/*.apk
           if-no-files-found: warn
+          
